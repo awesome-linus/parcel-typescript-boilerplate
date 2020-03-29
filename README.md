@@ -1,5 +1,5 @@
 # Parcel For TypeScript Environment
-## Environment Setup
+## TypeScript Environment Setup
 
 ### Install Parcel
 ```
@@ -54,4 +54,26 @@ Then, you should ignore file blow.
 node_modules
 .cache
 dist
+```
+
+## RxJS Environment Setup
+https://rxjs-dev.firebaseapp.com/guide/installation
+
+### Install RxJS
+```
+$ npm install --save rxjs @types/rx
+```
+
+### Create Sample
+src/index.ts
+```ts
+import Rx from 'rx';
+
+const source$ = Rx.Observable.range(1, 10).publish();
+const [odd$, even$] = source$.partition(i => i % 2 === 1);
+     Rx.Observable.merge(
+         odd$.map(i => i * 2),
+         even$.map(i => i * i))
+         .subscribe(v => console.log(v));
+source$.connect();
 ```
